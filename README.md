@@ -1,1 +1,1 @@
-# 2024-11-12-html-css-dom
+# Repetition av HTML & CSS samt en intro till DOM-manipulation
