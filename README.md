@@ -39,9 +39,110 @@ Of all the 130ish elements that exist, everyone except two has some sort of sema
 
 But you guess which one of all these elements are being used to most?..
 
-It is of course okay to use these elements but always think one more time if there is a more semantic one available. 
+It is of course okay to use these elements but always think one more time if there is a more semantic one available.
 
 ## CSS Repetition
+
+### Syntax
+
+<image src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F1.bp.blogspot.com%2F-XSZ7w9TqG7Q%2FXyuzeDhikBI%2FAAAAAAAAAFA%2FpKOcpM-wVYobQPZ64yA5qOEP4BXR4SgrACLcBGAsYHQ%2Fs955%2FJava%252BScript_CSS-Syntax_1560957204.jpg&f=1&nofb=1&ipt=810d9bd81e78b9803a532f4a2b97e6dabb5ec9ba35dfa6e9ea90e283b3e21048&ipo=images">
+
+- Selector: the target element we would like to apply styling to.
+- Declatration: A collection of all the styls that are applied to the target element
+- Property-value: A specific property that styles the target element in a very specifc way. It is always paird up with value, so a more common term is key-value-pair. The value is to which degree the applied styling should have.
+
+In the example, we are targeting every h1-element on the html document and applying the text color to be black and the font-size to be 12 px.
+
+### Box model
+
+<image src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.gcflearnfree.org%2Fcontent%2F5ef2084faaf0ac46dc9c10be_06_23_2020%2Fbox_model.png&f=1&nofb=1&ipt=6ad526a86bb4de7dd7907281c541e7d24d7e9b10df4ea4a7936109b435e223f0&ipo=images">
+
+- content: the content inside the html tags. Can be just plain text but can also be other html elements as well. If there are elements within another element, thery are called child elements.
+- padding: the transparent area between the border and the content. We can change this area depeneding on our needs in form of layout.
+- border: marks the end of the box. Border, padding and content makes up a "css box", but in other words, the html element itself. The borde is transparent per default but we can style that as well depending on our needs.
+- margin: defines the transparent area outside the box. It can be used to push other content away from the box itself.
+
+Key point here, content, padding and border belongs to he box. Margin is outside the box.
+
+When to use padding, border or margin? It all depends on your use case. Personally, i use padding more than I use margin. Since margin affect other boxes, it can lead to unprediced behaviour sometimes, if you have many boxes that "pushes" on eachother with margin. Border has its use cases, when you want do defined the end of a box with a visible line or something like that.
+
+### CSS Specificity
+
+Specificity is just a tool that the browser uses in order to decide which styling to apply to any given element.
+
+Take this example
+
+```css
+div {
+  background-color: yellow;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+div {
+   background-color: mediumaquamarine;
+}
+```
+
+Which styling is applied? The selectors are identical? The browser must differentiate them somehow. The first "tool" it uses, is the order of definition. Since the `mediumaquamarine` is defined later in the file, that styling will apply. The margin and padding remains the same, since they are not redefined later in the file.
+
+Another example
+
+The html file:
+```html
+    <div class="box-1">Box 1</div>
+    <div>Box 2</div>
+    <article class="box-1">Box 3</article>
+```
+
+The css file:
+```sql
+article.box-1 {
+  background-color: aqua;
+}
+
+.box-1 {
+  background-color: fuchsia;
+}
+
+div {
+  background-color: yellow;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+div {
+  background-color: mediumaquamarine;
+}
+```
+
+Which background color will the article element with the class box-1 get?
+
+In this case, the "aqua" color since a element combind with a class gives a higher speciicity than just a class.
+
+In summary, always use as high specificity as possible on your selectors. The highter the better. It allows you to pinpoint exactly where every styling should apply, without worrying about styling that "bleeds" over to other elements.
+
+```css
+div.box-3 {}
+```
+
+This selector, will target a div element that has the class box-3. You put the selectors together.
+
+```css
+div .box-3 {}
+```
+
+This on the other hand will target en element with the class box-3 that is a child element of a div. So this combination is made up with a white-space between the selectors.
+
+Then you combinde them in more details
+
+```css
+article.container .header {}
+```
+
+This selector targets an element with the class header that is a child element of a article element with the class container. 
+
+
 
 ## Intro to DOM Manipulation
 

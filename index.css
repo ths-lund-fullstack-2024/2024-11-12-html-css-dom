@@ -1,0 +1,21 @@
+article.box-1 {
+  background-color: aqua;
+}
+
+.box-1 {
+  background-color: fuchsia;
+}
+
+div {
+  background-color: yellow;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+div {
+  background-color: mediumaquamarine;
+}
+
+article.container .header {}
+
+
