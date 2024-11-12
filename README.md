@@ -201,9 +201,65 @@ This will append the articleEl to the DOM inside the body element. Even though t
 
 ### Create references
 
-#### querySelector
+These methods are used in order to create references to existing html elements. We need those in order to manipulate them.
+
+#### querySelector(css selector) => HTML Element | Null
+
+Is used to create a reference to a html element. It takes one parameter whichs is a css selector. If a match is found then that elemenet will be returned. Otherwise null will be returned.
+
+```js
+const header = document.querySelector(".header");
+console.log(header);
+```
+
+This works fine, since we just have one element with that class in our DOM.
+
+Let's try and access the a-tag with the innerText "Contact". We use a element selector to begin with.
+
+```js
+const aContact = document.querySelector("a");
+console.log(aContact);
+```
+
+This line of code returns the first a-tag that is found in the document, since it's not very specific. Let's search for an a-tag with the class "contact" instead.
+
+```js
+const aContact = document.querySelector(".contact");
+console.log(aContact);
+```
+
+This one returns the element that has the class "contact" which is the one we are looking for.
+
+When we have this reference we can then start manipulating the element in any way we want to.
 
 #### querySelectorAll
+
+This on is used when we want to access several elements at the same time, that all match the given css-selector.
+
+```js
+const aTags = document.querySelectorAll("a");
+console.log(aTags);
+```
+
+This will give us a nodelist that contains every element that matches the selector. in this case, we have three a-tags in the nodelist.
+
+Nodelist may look like an array, but it is NOT an array. Although we can loop through it, and access the different elements with an index, we can't use methods suchs as push(), pop() and so on. But looping works!
+
+```js
+for (const a of aTags) {
+  console.log(a);
+}
+```
+
+this is a regular for..of-loop. There exists a method on nodelists that we can use aswell to loop through the nodelist.
+
+```js
+aTags.forEach((a) => {
+  console.log(a);
+});
+```
+
+This works exactly the sam as a regular for-loop. Remember, the callback is invoke in every iteration on the element that we are currently iterating over. Which means we have access to iterated element every time.
 
 #### Older methods
 
@@ -228,7 +284,18 @@ We have our article, and then we access the innerText property and just set that
 
 ### Manipulation
 
+A set of methods to manipulate the element in different ways.
+
 #### style
+
+This property is used to get or set the styling of the element. Every style that is available inside a css-file is available on thie property, which means we can use it to access, color, fontSize, backgroundColor, margin, padding and so on. The difference between a stylesheet and setting a style with this property is that using this property sets the style on the actual style-attribute on the html-element.
+
+if we want to change the header to have background of green:
+
+```js
+const header = document.querySelector(".header");
+header.style.backgroundColor = "green";
+```
 
 #### classList
 
