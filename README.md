@@ -80,7 +80,7 @@ div {
 }
 
 div {
-   background-color: mediumaquamarine;
+  background-color: mediumaquamarine;
 }
 ```
 
@@ -89,13 +89,15 @@ Which styling is applied? The selectors are identical? The browser must differen
 Another example
 
 The html file:
+
 ```html
-    <div class="box-1">Box 1</div>
-    <div>Box 2</div>
-    <article class="box-1">Box 3</article>
+<div class="box-1">Box 1</div>
+<div>Box 2</div>
+<article class="box-1">Box 3</article>
 ```
 
 The css file:
+
 ```sql
 article.box-1 {
   background-color: aqua;
@@ -123,13 +125,15 @@ In this case, the "aqua" color since a element combind with a class gives a high
 In summary, always use as high specificity as possible on your selectors. The highter the better. It allows you to pinpoint exactly where every styling should apply, without worrying about styling that "bleeds" over to other elements.
 
 ```css
-div.box-3 {}
+div.box-3 {
+}
 ```
 
 This selector, will target a div element that has the class box-3. You put the selectors together.
 
 ```css
-div .box-3 {}
+div .box-3 {
+}
 ```
 
 This on the other hand will target en element with the class box-3 that is a child element of a div. So this combination is made up with a white-space between the selectors.
@@ -137,12 +141,11 @@ This on the other hand will target en element with the class box-3 that is a chi
 Then you combinde them in more details
 
 ```css
-article.container .header {}
+article.container .header {
+}
 ```
 
-This selector targets an element with the class header that is a child element of a article element with the class container. 
-
-
+This selector targets an element with the class header that is a child element of a article element with the class container.
 
 ## Intro to DOM Manipulation
 
@@ -152,11 +155,45 @@ This selector targets an element with the class header that is a child element o
 
 ### Create HTML Elements
 
-#### createElement
+#### document.createElement(type) => HTML Element
+
+This method is used to create a html element. The paramter "type" is the kind of element we would like to create, and it must be a string. It can a be a div, a, span, article, section, main and so on..
+
+The return value is the created html element which means we can directly store that html element inside a variable. And from there we can do other stuff.
+
+```js
+const articleEl = document.createElement("article");
+
+console.log(articleEl);
+```
+
+This will create the element and store the element on the DOM object but it is not visible or anything, it doesn't have any content whatsoever. If do inspect the element that was created via a log to the console. We can clearly see the the elements is represented by an object, and this object contains loads of properties that we can use in order to manipulate this element.
+
+In order to actually see the new element inside the DOM, we need to add it there.
 
 ### Appending to DOM
 
+This section contains a coplue of methods that we can use in order to add elements to the DOM, and actually see them in the browser and in the inspector element view.
+
 #### appendChild
+
+This methods will append a node as the last child element of the element on which this methods was invoked. So for instance, if we would like to append our element from above to the body, we need to invoke this method on the body element.
+
+Why body? Because, a html documnet can't exist without a body element. So if we don't have any other elements to use, we can always use the body element. How to access to body?
+
+```js
+const body = document.body;
+```
+
+Let's use this to add our created element.
+
+```js
+const articleEl = document.createElement("article");
+
+body.appendChild(articleEl);
+```
+
+This will append the articleEl to the DOM inside the body element. Even though the appendChild-method returns the node it appended, I am not interested in that return value. I just want the method to do its thing.
 
 #### insertAdjecentElement
 
@@ -172,9 +209,22 @@ This selector targets an element with the class header that is a child element o
 
 ### Update
 
+Contains a copule of methods to edit existing HTML elements, with a focus on the content of the HTML element.
+
 #### innerHTML
 
-#### innerText
+####
+
+innerText is a property of every element that exists, wether we create it or it already exists
+
+Let's take our article as an example.
+
+```js
+const articleEl = document.createElement("article");
+articleEl.innerText = "This is an article";
+```
+
+We have our article, and then we access the innerText property and just set that value to someting. In this case: "This is an article"
 
 ### Manipulation
 
