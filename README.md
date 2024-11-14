@@ -269,7 +269,7 @@ This will add the element just before the main element, a sibling.
 Let's take another one:
 
 ```js
-main.insertAdjacentElement("afterend", section);
+main.insertAdjacentElement("beforebegin", section);
 ```
 
 This will instead place the element after the element on which the method was invoked on. So still a sibling element, but on the other end.
@@ -279,6 +279,30 @@ One thing to notice here, even though we invoked the method twice with the same 
 [Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
 
 #### insertAdjacentHTML
+
+Works similar to the insertAdjacentElement` but it accepts a string as the second argument instead of a HTML element. This string can contain HTML characters and the browser can then parse the to proper HTML.
+
+```js
+const section = `
+  <section class="section">
+    <p>This is a paragraph inside the section</p>
+  </section>
+`;
+
+const main = document.querySelector("main");
+
+main.insertAdjacentHTML("beforebegin", section);
+```
+
+This will work fine, the string will be parsed to HTML and added as a sibling before the `main` element.
+
+Let's do the last line again and try to add it as the last child of the main instead.
+
+```js
+main.insertAdjacentHTML("beforeend", section);
+```
+
+So here is a difference in behavoiur. By running this line of code again, we dublicate the section instead of just moving it, as it did with the `inserAdjacentElement`. That's because the string variable is just a string, it's not a reference type. The value of the string is stored inside the variable. Which means the `insertAdjacentHTML` will insert it one more time, and of course let the browser parse it to a new HTML element.
 
 [Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
 
@@ -343,8 +367,6 @@ aTags.forEach((a) => {
 ```
 
 This works exactly the sam as a regular for-loop. Remember, the callback is invoke in every iteration on the element that we are currently iterating over. Which means we have access to iterated element every time.
-
-#### Older methods
 
 [Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
 

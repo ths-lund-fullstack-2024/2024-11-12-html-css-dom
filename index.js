@@ -68,9 +68,21 @@
 // main.insertAdjacentElement("beforeend", section);
 
 // ########## innerHTML ########## //
-const articleAsAString = "<article>This is an article</article>";
-console.log(articleAsAString);
+// const articleAsAString = "<article>This is an article</article>";
+// console.log(articleAsAString);
+
+// const main = document.querySelector("main");
+// // main.innerHTML = articleAsAString;
+// main.innerHTML += articleAsAString;
+
+// ########## insertAdjacentHTML ########## //
+
+const section = `
+    <section class="section">
+        <p>This is a paragraph inside the section</p>
+    </section>
+`;
 
 const main = document.querySelector("main");
-// main.innerHTML = articleAsAString;
-main.innerHTML += articleAsAString;
+main.insertAdjacentHTML("beforebegin", section);
+main.insertAdjacentHTML("beforeend", section);
