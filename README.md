@@ -313,7 +313,7 @@ Contains a copule of methods to edit existing HTML elements, with a focus on the
 
 #### innerHTML
 
-####
+#### innerText
 
 innerText is a property of every element that exists, wether we create it or it already exists
 
@@ -345,11 +345,69 @@ header.style.backgroundColor = "green";
 
 #### classList
 
-#### getAttribute
+classList is an attribute that has an array-like value. It simpky contains all the classes that are applied to the given element. It's not an array, it's a `DOMTokenList`. A special kind of object in JS. Let's look at it:
 
-#### setAtribute
+```js
+const header = document.querySelector(".header");
+console.log(header.classList);
+// DOMTokenList(3) ['header', 'brown', 'container', value: 'header brown container']
+```
 
-#### removeAttribute
+Looks like an array, but also looks like an object, but it is neither.
+
+This DOMTokenList also has some methods and properties that we can use. You can see them on this link: [DOMTokenList - W3Schools](https://www.w3schools.com/JSREF/dom_obj_html_domtokenlist.asp).
+
+Several methods but three are important:
+
+- `add()`: adds a token to the classList.
+- `remove()`: removes a token from the classList.
+- `contains()`: checks if a token is present in the classList or not. Returns a boolean for easy use in a if-check for instance.
+
+Let's take an example. Add two classes to the header from above:
+
+```js
+header.classList.add("brown", "container");
+```
+
+This line of code adds two classes to the element, in other words, two tokens to the DOMTokenList. Works fine with just one as well.
+
+#### getAttribute(attribute) => value of th attribute
+
+This method is used to return a value on a specific attribute on an element.
+
+```html
+<img class="santa" src="some-image" alt="A red santa" />
+```
+
+Let's take this image tag and get the value of the `alt`-attribute.
+
+```js
+const image = document.querySelector(".santa");
+const altText = image.getAttribute("alt");
+console.log("alt:", altText);
+```
+
+#### setAttribute(attribute, newValue) => void
+
+A method that updates the value on a specific attribute on en element.
+
+Let's update the `alt`-value on the santa image to some other text.
+
+```js
+image.setAttribute("alt", "just a regular santa");
+const altText = image.getAttribute("alt");
+console.log(altText);
+```
+
+#### removeAttribute(attribute) => void
+
+Removes an attribute on an element. Takes one parameter, which is the attribute to remove.
+
+Remove the `alt`-text from above.
+
+```js
+image.removeAttribute("alt");
+```
 
 #### removeChild
 

@@ -34,10 +34,24 @@
 
 // ########## style ########## //
 
-const header = document.querySelector(".header");
+// const header = document.querySelector(".header");
 // header.style.backgroundColor = "green";
 // header.style.color = "purple";
 
 // ########## classList ########## //
 
-header.classList.add("brown", "container");
+// header.classList.add("brown", "container");
+// console.log(header.classList);
+
+// ########## getAttribute ########## //
+const image = document.querySelector(".santa");
+// const altText = image.getAttribute("alt");
+// console.log("alt:", altText);
+
+// ########## setAttribute ########## //
+image.setAttribute("alt", "just a regular santa");
+const altText = image.getAttribute("alt");
+console.log(altText);
+
+// ########## removeAttribute ########## //
+image.removeAttribute("alt");
