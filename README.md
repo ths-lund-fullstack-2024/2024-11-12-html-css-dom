@@ -235,9 +235,50 @@ body.appendChild(articleEl);
 
 This will append the articleEl to the DOM inside the body element. Even though the appendChild-method returns the node it appended, I am not interested in that return value. I just want the method to do its thing.
 
-#### insertAdjecentElement
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
 
-#### insertAdjecentHTML
+#### insertAdjacentElement(position, element) => void
+
+Works similar to `appendChild()` but we can choose position on where to place the element relative to its parent. As always, most of all the DOM-methods we use, are invoked on a parent element.
+
+Two parameters, one for the position and one for the element that is supposed to be inserted.
+
+The position agrument can have four values:
+
+- `beforebegin`: this will insert the element before the parent element. It will in other words be a sibling element to the element on which this method was invoked.
+
+- `afterend`: this will insert the element after the parent element. It will be a sibling element as well to the element on which the methods was invoked.
+
+- `afterbegin`: this will insert the element as the first child element of the parent element on which the method was invoked on.
+
+- `beforend`: this will insert the element as the last child element of the parent elementon which it was invoked on. Much like the `appendChild()`-method.
+
+The element parameter is just the element we would like to insert.
+
+```js
+const section = document.createElement("section");
+section.innerText = "This is a section.";
+
+const main = document.querySelector("main");
+
+main.insertAdjacentElement("beforebegin", section);
+```
+
+This will add the element just before the main element, a sibling.
+
+Let's take another one:
+
+```js
+main.insertAdjacentElement("afterend", section);
+```
+
+This will instead place the element after the element on which the method was invoked on. So still a sibling element, but on the other end.
+
+One thing to notice here, even though we invoked the method twice with the same element, we still only have one section in the DOM. That's because HTML element are reference data type, which means it just points to something. If we move the reference we move the enitre element, we do not dublicate it as you might think.
+
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
+
+#### insertAdjacentHTML
 
 [Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
 
@@ -313,6 +354,34 @@ Contains a copule of methods to edit existing HTML elements, with a focus on the
 
 #### innerHTML
 
+This attribute gets or sets the HTML content inside a parent element. This HTML content could just be a string but it can also contain HTML syntax inside the string and the borwser will be able to parse to a proper HTML element.
+
+Creating a HTML element form scratch can be a bit of a hassle. First we need to create the element, then change the innerText, then we might want to add some classes, maybe an id, and then some attributes and so on. Quite a few method calls to make, and many lines of code.
+
+This property gives us the opportunity to create HTML as a string, and let the browser to the heavy lifting of create the element.
+
+```js
+const articleAsAString = "<article>This is an article</article>";
+console.log(articleAsAString);
+```
+
+This on its own is just a string, not very useful in this case. Let's use innerHTML on the `main` element to add this html string.
+
+```js
+const main = document.querySelector("main");
+main.innerHTML = articleAsAString;
+```
+
+As you can see, this will replce all of the content inside the `main` with this articleAsString-variable. So be careful when using it.
+
+Let's try to "append or concatinate" instead
+
+```js
+main.innerHTML += articleAsAString;
+```
+
+This works and the new article will be addes as the last child of the `main`. This works because the `innerHTML` is a string representation of the content, with the added benifit that the browser can parse HTML specifc characters to proper HTML. So what we do here, is just adding two string together and then let hte browser parse it to HTML.
+
 #### innerText
 
 innerText is a property of every element that exists, wether we create it or it already exists
@@ -343,6 +412,8 @@ const header = document.querySelector(".header");
 header.style.backgroundColor = "green";
 ```
 
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
+
 #### classList
 
 classList is an attribute that has an array-like value. It simpky contains all the classes that are applied to the given element. It's not an array, it's a `DOMTokenList`. A special kind of object in JS. Let's look at it:
@@ -371,6 +442,8 @@ header.classList.add("brown", "container");
 
 This line of code adds two classes to the element, in other words, two tokens to the DOMTokenList. Works fine with just one as well.
 
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
+
 #### getAttribute(attribute) => value of th attribute
 
 This method is used to return a value on a specific attribute on an element.
@@ -387,6 +460,8 @@ const altText = image.getAttribute("alt");
 console.log("alt:", altText);
 ```
 
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
+
 #### setAttribute(attribute, newValue) => void
 
 A method that updates the value on a specific attribute on en element.
@@ -399,6 +474,8 @@ const altText = image.getAttribute("alt");
 console.log(altText);
 ```
 
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
+
 #### removeAttribute(attribute) => void
 
 Removes an attribute on an element. Takes one parameter, which is the attribute to remove.
@@ -409,7 +486,11 @@ Remove the `alt`-text from above.
 image.removeAttribute("alt");
 ```
 
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
+
 #### removeChild
+
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
 
 #### replaceChild
 

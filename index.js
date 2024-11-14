@@ -44,14 +44,33 @@
 // console.log(header.classList);
 
 // ########## getAttribute ########## //
-const image = document.querySelector(".santa");
+// const image = document.querySelector(".santa");
 // const altText = image.getAttribute("alt");
 // console.log("alt:", altText);
 
 // ########## setAttribute ########## //
-image.setAttribute("alt", "just a regular santa");
-const altText = image.getAttribute("alt");
-console.log(altText);
+// image.setAttribute("alt", "just a regular santa");
+// const altText = image.getAttribute("alt");
+// console.log(altText);
 
 // ########## removeAttribute ########## //
-image.removeAttribute("alt");
+// image.removeAttribute("alt");
+
+// ########## insertAdjecentElement ########## //
+// const section = document.createElement("section");
+// section.innerText = "This is a section.";
+
+// const main = document.querySelector("main");
+
+// main.insertAdjacentElement("beforebegin", section);
+// main.insertAdjacentElement("afterend", section);
+// main.insertAdjacentElement("afterbegin", section);
+// main.insertAdjacentElement("beforeend", section);
+
+// ########## innerHTML ########## //
+const articleAsAString = "<article>This is an article</article>";
+console.log(articleAsAString);
+
+const main = document.querySelector("main");
+// main.innerHTML = articleAsAString;
+main.innerHTML += articleAsAString;
