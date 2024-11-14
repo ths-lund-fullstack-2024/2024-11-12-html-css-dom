@@ -3,6 +3,32 @@
 <details open>
 <summary>Table of content</summary>
 
+- [HTML Repetition](#html-repetition)
+
+  - [Key points](#key-points)
+  - [Semantics](#semantics)
+
+- [CSS Repetition](#css-repetition)
+
+  - [Syntax](#syntax)
+  - [Box model](#box-model)
+  - [CSS Specificity](#css-specificity)
+
+- [DOM Manipulation](#intro-to-dom-manipulation)
+
+  - [Article about DOM Manipulation](#article-of-a-comprehensive-collection-about-dom-manipulation)
+  - [Create HTML Elements](#create-html-elements)
+  - [Appending to DOM](#appending-to-dom)
+  - [Create references ](#create-references)
+  - [Update](#update)
+  - [Manipulation](#manipulation)
+
+- [Event Handling](#event-handling)
+
+  - [Click](#click)
+  - [Input](#input)
+  - [Submit](#submit)
+
 </details>
 
 ## HTML Repetition
@@ -16,6 +42,8 @@ It stands for Hypertext Markup Language. Say it once, and then never again. But 
 </div>
 ```
 
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
+
 ### Key points
 
 - `<div></div>`: start and end tag. Almost every html element has a start and an end.
@@ -23,6 +51,8 @@ It stands for Hypertext Markup Language. Say it once, and then never again. But 
 - `<div>content</div>`: the content insde an html element. Can be something as easy as a text, but also nestet elements, on other words child elements. And those child elements can in turn have their own child elements. The nesting can go on for many levels.
 
 - `id & class`: Example of attributs that can be applied to the element. Id and class are very common attributes that can be paplied on every HTML element out there. But there are also special attributed that are only avaialable on certain html element. Like `src` on an `<image>` tag. Attributes can add functionlity to html elements.
+
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
 
 ### Semantics
 
@@ -41,6 +71,8 @@ But you guess which one of all these elements are being used to most?..
 
 It is of course okay to use these elements but always think one more time if there is a more semantic one available.
 
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
+
 ## CSS Repetition
 
 ### Syntax
@@ -52,6 +84,8 @@ It is of course okay to use these elements but always think one more time if the
 - Property-value: A specific property that styles the target element in a very specifc way. It is always paird up with value, so a more common term is key-value-pair. The value is to which degree the applied styling should have.
 
 In the example, we are targeting every h1-element on the html document and applying the text color to be black and the font-size to be 12 px.
+
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
 
 ### Box model
 
@@ -65,6 +99,8 @@ In the example, we are targeting every h1-element on the html document and apply
 Key point here, content, padding and border belongs to he box. Margin is outside the box.
 
 When to use padding, border or margin? It all depends on your use case. Personally, i use padding more than I use margin. Since margin affect other boxes, it can lead to unprediced behaviour sometimes, if you have many boxes that "pushes" on eachother with margin. Border has its use cases, when you want do defined the end of a box with a visible line or something like that.
+
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
 
 ### CSS Specificity
 
@@ -147,6 +183,8 @@ article.container .header {
 
 This selector targets an element with the class header that is a child element of a article element with the class container.
 
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
+
 ## Intro to DOM Manipulation
 
 ### Article of a comprehensive collection about DOM Manipulation
@@ -170,6 +208,8 @@ console.log(articleEl);
 This will create the element and store the element on the DOM object but it is not visible or anything, it doesn't have any content whatsoever. If do inspect the element that was created via a log to the console. We can clearly see the the elements is represented by an object, and this object contains loads of properties that we can use in order to manipulate this element.
 
 In order to actually see the new element inside the DOM, we need to add it there.
+
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
 
 ### Appending to DOM
 
@@ -198,6 +238,8 @@ This will append the articleEl to the DOM inside the body element. Even though t
 #### insertAdjecentElement
 
 #### insertAdjecentHTML
+
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
 
 ### Create references
 
@@ -263,6 +305,8 @@ This works exactly the sam as a regular for-loop. Remember, the callback is invo
 
 #### Older methods
 
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
+
 ### Update
 
 Contains a copule of methods to edit existing HTML elements, with a focus on the content of the HTML element.
@@ -281,6 +325,8 @@ articleEl.innerText = "This is an article";
 ```
 
 We have our article, and then we access the innerText property and just set that value to someting. In this case: "This is an article"
+
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
 
 ### Manipulation
 
@@ -308,3 +354,19 @@ header.style.backgroundColor = "green";
 #### removeChild
 
 #### replaceChild
+
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
+
+## Event Handling
+
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
+
+### Click
+
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
+
+### Input
+
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
+
+### Submit
