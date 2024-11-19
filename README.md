@@ -538,6 +538,8 @@ Three parameters:
 
 - **useCapture**: optional configuration weather the event should be triggered in the bubbling phase or the capture phase. This is beyond the scope of the course, but you can read about it here: [Understanding the useCapture Parameter in addEventListener](https://dnmtechs.com/understanding-the-usecapture-parameter-in-addeventlistener/).
 
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
+
 #### Syntax of an eventListener
 
 ```html
@@ -556,9 +558,13 @@ button.addEventListener("click", (event) => {
 
 This syntax is just one of, I think, three different ones. But this is the most dynamic one to use of several different reasons, but we are not going to explore them. Just accept that this is the best syntax.
 
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
+
 ### Click
 
 Click is by far the most common event when it comes to web applications. Let's try it out by creating button in our HTML and then registering a click event on it.
+
+#### Basic example
 
 ```html
 <button class="btn">Click me to get presents</button>
@@ -572,9 +578,136 @@ button.addEventListener("click", (event) => {
 });
 ```
 
+This will just log a text to the console. Not very funny but it shows that it works.
+
+Let's do another example, let's create a another button on which we change the text every time we click on it.
+
+```html
+<button class="btn1">Click me to change this text</button>
+```
+
+```js
+const button1 = document.querySelector(".btn1");
+
+button1.addEventListent("click", (event) => {
+  button1.innerText = "Now I have a new text!";
+});
+```
+
+This will change the text in the button on the first click. On the second click nothing will happen because the text has already been changed. In reality, the code is invoked again but since we are updating to the same thing, we won't see anything in the browser.
+
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
+
+#### Change content with Click
+
+We could add a if check to see what the content is, and from there change it accordingly.
+
+```js
+button1.addEventListent("click", (event) => {
+  const innerText = button1.innerText;
+
+  if (innerText === "Click me to change this text") {
+    button1.innerText = "Now I have a new text!";
+  } else {
+    button1.innerText = "Click me to change this text";
+  }
+});
+```
+
+This example is a bit more useful since we can change the text back and forth.
+
+[Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
+
+#### Show and hide content with Click
+
+In this case we will have some sort of content that will be hidden by default, and by clicking on a button, this hidden content will be revealed. Here is the HTML for this example:
+
+_index.html_
+
+```html
+<nav class="navbar">
+  <button class="link-btn">Show links</button>
+  <div class="links close">
+    <a class="home" href="#">Home</a>
+    <a class="about" href="#">About</a>
+    <a class="contact" href="#">Contact</a>
+  </div>
+</nav>
+```
+
+What I have also done, is to add some styling to this specific HTML:
+
+_index.css_
+
+```css
+.navbar {
+  display: flex;
+  gap: 2rem;
+}
+
+.links {
+  display: block;
+}
+
+.links.close {
+  display: none;
+}
+```
+
+This styling just flexes the navbar container and make sures that the links element is hidden by default with the help of the close-class. What we want to do here, is to remove the close-class on the click in order for the links element to be visible again.
+
+_events.js_
+
+```js
+const linkButton = document.querySelector(".link-btn");
+const linkDiv = document.querySelector(".links");
+
+linkButton.addEventListener("click", () => {
+  // No need for the event object.
+
+  if (linkDiv.classList.contains("close")) {
+    linkDiv.classList.remove("close");
+    linkButton.innerText = "Hide Links";
+  } else {
+    linkDiv.classList.add("close");
+    linkButton.innerText = "Show Links";
+  }
+});
+```
+
+So, this code above, first it create the references to the elements we want to interact with. Then we register the event listener on the button and the create the logic.
+
+The logic removes or adds the class `close` on the links-element, and changes the text on the button depending on if the links are hidden or not.
+
 [Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
 
 ### Input
+
+This event is connected to input elements. It will be triggered everytime you type in a character in an input field. We can listen to this event and execute some code. For instance, we could just log the content of the input field to the console.
+
+Let's create some html:
+
+_index.html_
+
+```html
+<div class="input-wrapper">
+  <label for="wish">What's your wish?</label>
+  <input id="wish" type="text" />
+</div>
+```
+
+So now we can register an input event on the input element and console.log the value of the input to the console.
+
+_events.js_
+
+```js
+const input = document.querySelector(".input-wrapper input");
+
+input.addEventListener("input", (event) => {
+  console.log(event);
+  // const value = event.target.value;
+});
+```
 
 [Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
 

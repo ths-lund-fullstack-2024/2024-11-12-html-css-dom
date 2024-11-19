@@ -5,3 +5,16 @@ img {
 .brown {
   background-color: burlywood;
 }
+
+.navbar {
+  display: flex;
+  gap: 2rem;
+}
+
+.links {
+  display: block;
+}
+
+.links.close {
+  display: none;
+}
