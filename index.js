@@ -77,12 +77,12 @@
 
 // ########## insertAdjacentHTML ########## //
 
-const section = `
-    <section class="section">
-        <p>This is a paragraph inside the section</p>
-    </section>
-`;
+// const section = `
+//     <section class="section">
+//         <p>This is a paragraph inside the section</p>
+//     </section>
+// `;
 
-const main = document.querySelector("main");
-main.insertAdjacentHTML("beforebegin", section);
-main.insertAdjacentHTML("beforeend", section);
+// const main = document.querySelector("main");
+// main.insertAdjacentHTML("beforebegin", section);
+// main.insertAdjacentHTML("beforeend", section);

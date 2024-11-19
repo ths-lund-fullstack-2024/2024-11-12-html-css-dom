@@ -520,9 +520,57 @@ image.removeAttribute("alt");
 
 ## Event Handling
 
+Event is just something that happens when a user interacts with a application or website. It's called that an event is triggered when you do something. It could be a click, an input change somewhere, maybe a hover on some part of the application that shows some content and so on. These are all events that we can handle with javascript, and do different things, run some code maybe.
+
+The most common event is by far the click-event, but there are over a 100 different kinds of events, here is a complete list of them all: [W3Schools - list of DOM events](https://www.w3schools.com/jsref/dom_obj_event.asp).
+
 [Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
 
+### addEventListener(event, callback, useCapture?) => void
+
+This method is used to add an event listener to a HTML element and it's available on every HTML element there is. You just need a reference to the specific element and then you can add the listener.
+
+Three parameters:
+
+- **event**: a string representation of the event you want to listen to. Could be a `"click"` event, a `"input"` event or some other event. Check the list above for all the events.
+
+- **callback**: this is the function that will run whenever the specified event has been triggered. The callback ALWAYS have access to the **_event object_** that is created by JavaScript in order to capture information about the said event.
+
+- **useCapture**: optional configuration weather the event should be triggered in the bubbling phase or the capture phase. This is beyond the scope of the course, but you can read about it here: [Understanding the useCapture Parameter in addEventListener](https://dnmtechs.com/understanding-the-usecapture-parameter-in-addeventlistener/).
+
+#### Syntax of an eventListener
+
+```html
+<button class="btn">Click me</button>
+```
+
+```js
+// First step - create reference to the element
+const button = document.querySelector(".btn");
+
+// Secont step - add the event listener to the element and create the logic
+button.addEventListener("click", (event) => {
+  // code to execute when the click event was triggered on the button element.
+});
+```
+
+This syntax is just one of, I think, three different ones. But this is the most dynamic one to use of several different reasons, but we are not going to explore them. Just accept that this is the best syntax.
+
 ### Click
+
+Click is by far the most common event when it comes to web applications. Let's try it out by creating button in our HTML and then registering a click event on it.
+
+```html
+<button class="btn">Click me to get presents</button>
+```
+
+```js
+const button = document.querySelector(".btn");
+
+button.addEventListener("click", (event) => {
+  console.log("The button has been clicked.");
+});
+```
 
 [Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
 
