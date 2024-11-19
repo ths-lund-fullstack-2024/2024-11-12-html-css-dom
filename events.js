@@ -33,11 +33,32 @@ linkButton.addEventListener("click", () => {
   }
 });
 
-// ########## Input event ##########
+// ########## Basic input event ##########
 
+// const input = document.querySelector(".input-wrapper input");
+
+// input.addEventListener("input", (event) => {
+//   const value = event.target.value;
+//   console.log(value);
+// });
+
+// ########## Input event with more DOM manipulation ##########
+
+const fieldset = document.querySelector(".input-wrapper");
 const input = document.querySelector(".input-wrapper input");
 
 input.addEventListener("input", (event) => {
-  console.log(event);
-  // const value = event.target.value;
+  const value = event.target.value;
+
+  if (inputIsValid(value)) {
+    fieldset.classList.add("valid");
+    fieldset.classList.remove("error");
+  } else {
+    fieldset.classList.remove("valid");
+    fieldset.classList.add("error");
+  }
 });
+
+function inputIsValid(value) {
+  return value.length >= 7;
+}

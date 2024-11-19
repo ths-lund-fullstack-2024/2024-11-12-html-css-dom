@@ -18,3 +18,31 @@ img {
 .links.close {
   display: none;
 }
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.5rem;
+}
+
+.input-wrapper.error {
+  border-color: red;
+}
+
+.input-wrapper.valid {
+  border-color: green;
+}
+
+.input-wrapper .feedback {
+  display: none;
+  color: red;
+  margin: 0;
+}
+
+.input-wrapper.error .feedback {
+  display: block;
+}

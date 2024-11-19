@@ -704,10 +704,90 @@ _events.js_
 const input = document.querySelector(".input-wrapper input");
 
 input.addEventListener("input", (event) => {
-  console.log(event);
-  // const value = event.target.value;
+  const value = event.target.value;
+  console.log(value);
 });
 ```
+
+This will just log the value of the input to the console every time we type in a character inside the input field. but we can do so much more with this. For exampel, let's validate the input. So if the value of the input is longer than 7 characters, we can do something. Let's for instance update the border color of the input field. We need some css for this:
+
+_index.css_
+
+```css
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.5rem;
+}
+
+.input-wrapper.error {
+  border-color: red;
+}
+
+.input-wrapper.valid {
+  border-color: green;
+}
+```
+
+And then the code:
+
+_events.js_
+
+```js
+const fieldset = document.querySelector(".input-wrapper");
+const input = document.querySelector(".input-wrapper input");
+
+input.addEventListener("input", (event) => {
+  const value = event.target.value;
+
+  if (inputIsValid(value)) {
+    fieldset.classList.add("valid");
+    fieldset.classList.remove("error");
+  } else {
+    fieldset.classList.remove("valid");
+    fieldset.classList.add("error");
+  }
+});
+
+function inputIsValid(value) {
+  return value.length >= 7;
+}
+
+// Alternative version with a arrow function with implicit return.
+const inputIsValidAlt = (value) => value.length >= 7;
+```
+
+This worked just fine, the border of the fieldset will be updated depending on if the value is valid or not. We could expand this example and add some feedback text aswell. We must add some html and css in order to make this work.
+
+_index.html_
+
+```html
+<fieldset class="input-wrapper">
+  <label for="wish">What's your wish?</label>
+  <input id="wish" type="text" />
+  <p class="feedback">Input must be longer than 7 characters...</p>
+</fieldset>
+```
+
+_index.css_
+
+```css
+.input-wrapper .feedback {
+  display: none;
+  color: red;
+  margin: 0;
+}
+
+.input-wrapper.error .feedback {
+  display: block;
+}
+```
+
+And we actually don't have to update the code since the visibility of the feedback element is based on pure css classes.
 
 [Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
 
