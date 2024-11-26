@@ -792,3 +792,85 @@ And we actually don't have to update the code since the visibility of the feedba
 [Back to top](#repetition-of-html--css-and-a-intro-to-dom-manipulation)
 
 ### Submit
+
+The submit event is used together with a form-tag and one or many input fields. The submit event is triggered when the form is submitted,either with a click on the submit button or on a return key click from within the form.
+
+To test this, we need a form with a couple input fields.
+
+_index.html_
+
+```html
+<form class="form">
+  <input class="name-input" placeholder="Your name" type="text" />
+
+  <input class="age-input" placeholder="Your age" type="number" />
+
+  <textarea class="text-input" placeholder="What are your wishes?"> </textarea>
+
+  <button type="submit">Send</button>
+</form>
+```
+
+Now we need to create some references and then add a eventListener.
+
+`events.js`
+
+```js
+const form = document.querySelector(".form");
+
+form.addEventListener("submit", (event) => {});
+```
+
+To get rid of the default behaviour _( page is reloaded and all the input fields are reset )_ when a form is submitted, we can invoke a special method called `preventDefault()` on the event object.
+
+`events.js`
+
+```js
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+});
+```
+
+Now when the default behaviour is gone we can start collecting the information from the input fields. We do that with more references, and then we get the value attribute of those references.
+
+`events.js`
+
+```js
+const form = document.querySelector(".form");
+const nameInput = document.querySelector(".name-input");
+const ageInput = document.querySelector(".age-input");
+const textInput = document.querySelector(".text-input");
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  console.log("Form submitted");
+});
+```
+
+Now we have the references, we can start getting the values from them.
+
+`events.js`
+
+```js
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const name = nameInput.value;
+  const age = ageInput.value;
+  const text = textInput.value;
+
+  const wishObj = {
+    name,
+    age,
+    text,
+  };
+
+  console.log(wishObj);
+});
+```
+
+So this is a very common case using a submit event on a form tag. We let the user type some sort of information, we collect that information and package it in to a nice object that we then can send to some server somewhere for processing.
+
+But we can do so much more in a submit event as well. Maybe some basic validation.
+
+The easiest kind of validation when it comes to inputs is to just add  the `required` attribute to the input fields.

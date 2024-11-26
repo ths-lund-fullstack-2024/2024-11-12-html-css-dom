@@ -62,3 +62,33 @@ input.addEventListener("input", (event) => {
 function inputIsValid(value) {
   return value.length >= 7;
 }
+
+// ########## Submit event ##########
+
+const form = document.querySelector(".form");
+const nameInput = document.querySelector(".name-input");
+const ageInput = document.querySelector(".age-input");
+const textInput = document.querySelector(".text-input");
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const name = nameInput.value;
+  const age = ageInput.value;
+  const text = textInput.value;
+
+  validateForm();
+
+  const wishObj = {
+    name,
+    age,
+    text,
+  };
+
+  console.log(wishObj);
+
+  form.reset();
+});
+
+function validateForm() {
+  console.log("The form was validated.");
+}
